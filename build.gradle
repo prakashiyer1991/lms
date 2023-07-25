@@ -1,0 +1,89 @@
+plugins{
+	id 'org.springframework.boot' version '2.7.7'
+}
+
+apply plugin: 'java'
+apply plugin: 'idea'
+apply plugin: 'io.spring.dependency-management'
+
+group 'com.aspire.lms'
+
+configurations {
+	developmentOnly
+	runtimeClasspath {
+		extendsFrom developmentOnly
+	}
+	compileOnly {
+		extendsFrom annotationProcessor
+	}
+}
+
+jar {
+	enabled = false
+}
+
+java {
+	sourceCompatibility = JavaVersion.VERSION_17
+	targetCompatibility = JavaVersion.VERSION_17
+}
+
+repositories {
+	mavenCentral()
+}
+
+
+dependencies {
+
+
+	testImplementation 'junit:junit:4.13.1'
+	testImplementation 'junit:junit:4.13.1'
+	dependencies {
+		implementation group: 'org.springframework.boot', name: 'spring-boot-starter'
+		implementation group: 'org.springframework.boot', name: 'spring-boot-starter-web'
+		implementation group: 'org.springframework.boot', name: 'spring-boot-starter-actuator'
+		implementation group: 'org.springframework.boot', name: 'spring-boot-starter-validation'
+		implementation group: 'org.springframework.boot', name: 'spring-boot-starter-data-jpa'
+		implementation group: 'mysql', name: 'mysql-connector-java', version: '8.0.13'
+		implementation group: 'com.zaxxer', name: 'HikariCP', version: '3.2.0'
+
+		implementation 'org.projectlombok:lombok:1.18.24'
+		annotationProcessor 'org.projectlombok:lombok:1.18.24'
+
+
+		implementation group: 'com.vladmihalcea', name: 'hibernate-types-52', version: '2.16.2'
+
+		//	Test Related Dependencies are here
+		testImplementation("org.junit.jupiter:junit-jupiter:5.7.0")
+		testImplementation('org.junit.jupiter:junit-jupiter-params:5.6.2')
+		testImplementation('org.junit.jupiter:junit-jupiter-engine:5.7.0')
+		testImplementation "org.mockito:mockito-core:2.+"
+
+		testImplementation('org.mockito:mockito-junit-jupiter:2.18.3')
+		testImplementation('org.springframework.boot:spring-boot-starter-test'){
+			exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+			exclude group: 'org.hamcrest', module: 'hamcrest'
+		}
+		testImplementation 'org.projectlombok:lombok:1.18.22'
+		testAnnotationProcessor 'org.projectlombok:lombok:1.18.22'
+		testImplementation 'org.assertj:assertj-core:3.22.0'
+		testImplementation group: 'com.fasterxml.jackson.datatype', name: 'jackson-datatype-jsr310', version: '2.13.3'
+
+		implementation('org.apache.logging.log4j:log4j-api') {
+			version {
+				strictly '2.16.0'
+			}
+		}
+		implementation('org.apache.logging.log4j:log4j-core') {
+			version {
+				strictly '2.16.0'
+			}
+		}
+
+
+	}
+
+}
+
+test {
+	useJUnitPlatform()
+}
